@@ -5,10 +5,12 @@
   "author": "",
   "license": "MIT",
   "scripts": {
+    "logs": "heroku logs --app base64-converter --tail",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
+    "prestart:prod": "npm run typeorm:migrate dev",
+    "start": "node dist/main.js",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
