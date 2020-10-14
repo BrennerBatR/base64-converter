@@ -1,14 +1,10 @@
 import {
   Controller,
   Get,
-  HttpCode,
-  HttpStatus,
   Post,
-  UploadedFile,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express/multer/interceptors/file.interceptor';
 import { FilesInterceptor } from '@nestjs/platform-express/multer/interceptors/files.interceptor';
 import { AppService } from './app.service';
 
