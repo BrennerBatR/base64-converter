@@ -2,9 +2,11 @@ import {
   Controller,
   Get,
   Post,
+  UploadedFile,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { FilesInterceptor } from '@nestjs/platform-express/multer/interceptors/files.interceptor';
 import { AppService } from './app.service';
 
@@ -29,6 +31,17 @@ export class AppController {
         Buffer.from(f.buffer).toString('base64');
       img.push(base64);
     }
+    return { img };
+  }
+
+  @Post('upload/single')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadSingleFile(@UploadedFile() f) {
+    let img =
+      'data:' +
+      f.mimetype +
+      ';base64,' +
+      Buffer.from(f.buffer).toString('base64');
     return { img };
   }
 }
